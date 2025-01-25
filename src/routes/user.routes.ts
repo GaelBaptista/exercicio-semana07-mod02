@@ -30,4 +30,14 @@ userRouter.post("/", async (req: Request, res: Response) => {
     }
 })
 
+userRouter.get("/", async (req: Request, res: Response) => {
+    try {
+        const result = await userRepository.find()
+
+        res.status(200).json(result)
+    } catch (ex){
+        res.status(500).json("Não foi possível executar a solicitação!")
+    }
+})
+
 export default userRouter
